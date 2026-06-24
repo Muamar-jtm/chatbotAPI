@@ -5,6 +5,9 @@ const chatBox = document.getElementById('chat-box');
 // Maintain conversation history for API requests
 let conversationHistory = [];
 
+// Limit conversation history to prevent token waste (max 20 messages = ~10 exchanges)
+const MAX_CONVERSATION_MESSAGES = 15;
+
 form.addEventListener('submit', async function (e) {
   e.preventDefault();
 
@@ -18,6 +21,9 @@ form.addEventListener('submit', async function (e) {
 
   // Add user message to conversation history
   conversationHistory.push({ role: 'user', text: userMessage });
+
+  // Keep conversation history within limit to save tokens
+  trimConversationHistory();
 
   // Show temporary loading message with spinner icon
   const thinkingElement = appendMessage('bot', '', true);
@@ -54,6 +60,9 @@ form.addEventListener('submit', async function (e) {
 
     // Add AI response to conversation history
     conversationHistory.push({ role: 'model', text: aiResponse });
+
+    // Keep conversation history within limit to save tokens
+    trimConversationHistory();
   } catch (error) {
     console.error('Chat error:', error);
 
@@ -107,4 +116,13 @@ function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
   return div.innerHTML;
+}
+
+function trimConversationHistory() {
+  // If conversation exceeds max messages, remove oldest messages
+  if (conversationHistory.length > MAX_CONVERSATION_MESSAGES) {
+    conversationHistory = conversationHistory.slice(
+      conversationHistory.length - MAX_CONVERSATION_MESSAGES
+    );
+  }
 }

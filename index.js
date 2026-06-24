@@ -48,7 +48,7 @@ app.post('/api/chat', async (req, res) =>{
                 Jika ada yang bertanya tentang produk tabungan tolong kamu baca di alamat url ini https://bprsvitkacentral.com/tabungan.
                 Jika ada yang bertanya tentang produk gadai emas tolong kamu baca di alamat url ini https://bprsvitkacentral.com/gadai.
                 Pelajari tentang https://bprsvitkacentral.com/simulasi-pembiayaan jika ada yang bertanya tentang simulasi atau cara menghitung atau tolong hitungkan jika ingin melakjukann pinjaman.
-                
+                Pelajari tentang https://bprsvitkacentral.taplink.id/ jika ada yang bertanya tentang siapa yang bisa dihubungi atau informasi kontak, kemudian katakan kepada calon nasabah dengan sopan dan jelas.
                 `
             },
         });
